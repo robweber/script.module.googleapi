@@ -8,6 +8,7 @@
 	<import addon="script.module.httplib2" version="0.8.0" />
 	<import addon="script.module.uritemplate" version="0.6" />
 	<import addon="script.module.six" version="1.9.0" />
+	<import addon="script.module.oauth2client" version="1.4.7" />
   </requires>
   <extension point="xbmc.python.module"
              library="lib" />
