@@ -45,14 +45,14 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.nonmultipart import MIMENonMultipart
 from email.parser import FeedParser
 
-from apiclient import mimeparse
-from apiclient.errors import BatchError
-from apiclient.errors import HttpError
-from apiclient.errors import InvalidChunkSizeError
-from apiclient.errors import ResumableUploadError
-from apiclient.errors import UnexpectedBodyError
-from apiclient.errors import UnexpectedMethodError
-from apiclient.model import JsonModel
+from googleapiclient import mimeparse
+from googleapiclient.errors import BatchError
+from googleapiclient.errors import HttpError
+from googleapiclient.errors import InvalidChunkSizeError
+from googleapiclient.errors import ResumableUploadError
+from googleapiclient.errors import UnexpectedBodyError
+from googleapiclient.errors import UnexpectedMethodError
+from googleapiclient.model import JsonModel
 from oauth2client import util
 
 
@@ -827,10 +827,7 @@ class HttpRequest(object):
         # The upload was complete.
         return (status, body)
 
-    # The httplib.request method can take streams for the body parameter, but
-    # only in Python 2.6 or later. If a stream is available under those
-    # conditions then use it as the body argument.
-    if self.resumable.has_stream() and sys.version_info[1] >= 6:
+    if self.resumable.has_stream():
       data = self.resumable.stream()
       if self.resumable.chunksize() == -1:
         data.seek(self.resumable_progress)
@@ -1120,10 +1117,6 @@ class BatchHttpRequest(object):
     g.flatten(msg, unixfrom=False)
     body = fp.getvalue()
 
-    # Strip off the \n\n that the MIME lib tacks onto the end of the payload.
-    if request.body is None:
-      body = body[:-2]
-
     return status_line + body
 
   def _deserialize_response(self, payload):
@@ -1292,6 +1285,9 @@ class BatchHttpRequest(object):
       httplib2.HttpLib2Error if a transport error has occured.
       googleapiclient.errors.BatchError if the response is the wrong format.
     """
+    # If we have no requests return
+    if len(self._order) == 0:
+      return None
 
     # If http is not supplied use the first valid one given in the requests.
     if http is None:
@@ -1464,7 +1460,7 @@ class HttpMock(object):
     if headers is None:
       headers = {'status': '200'}
     if filename:
-      f = open(filename, 'r')
+      f = open(filename, 'rb')
       self.data = f.read()
       f.close()
     else:
