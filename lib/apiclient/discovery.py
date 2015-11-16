@@ -53,21 +53,21 @@ import httplib2
 import uritemplate
 
 # Local imports
-from googleapiclient import mimeparse
-from googleapiclient.errors import HttpError
-from googleapiclient.errors import InvalidJsonError
-from googleapiclient.errors import MediaUploadSizeError
-from googleapiclient.errors import UnacceptableMimeTypeError
-from googleapiclient.errors import UnknownApiNameOrVersion
-from googleapiclient.errors import UnknownFileType
-from googleapiclient.http import BatchHttpRequest
-from googleapiclient.http import HttpRequest
-from googleapiclient.http import MediaFileUpload
-from googleapiclient.http import MediaUpload
-from googleapiclient.model import JsonModel
-from googleapiclient.model import MediaModel
-from googleapiclient.model import RawModel
-from googleapiclient.schema import Schemas
+from apiclient import mimeparse
+from apiclient.errors import HttpError
+from apiclient.errors import InvalidJsonError
+from apiclient.errors import MediaUploadSizeError
+from apiclient.errors import UnacceptableMimeTypeError
+from apiclient.errors import UnknownApiNameOrVersion
+from apiclient.errors import UnknownFileType
+from apiclient.http import BatchHttpRequest
+from apiclient.http import HttpRequest
+from apiclient.http import MediaFileUpload
+from apiclient.http import MediaUpload
+from apiclient.model import JsonModel
+from apiclient.model import MediaModel
+from apiclient.model import RawModel
+from apiclient.schema import Schemas
 from oauth2client.client import GoogleCredentials
 from oauth2client.util import _add_query_parameter
 from oauth2client.util import positional

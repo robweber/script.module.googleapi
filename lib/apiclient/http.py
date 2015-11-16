@@ -45,14 +45,14 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.nonmultipart import MIMENonMultipart
 from email.parser import FeedParser
 
-from googleapiclient import mimeparse
-from googleapiclient.errors import BatchError
-from googleapiclient.errors import HttpError
-from googleapiclient.errors import InvalidChunkSizeError
-from googleapiclient.errors import ResumableUploadError
-from googleapiclient.errors import UnexpectedBodyError
-from googleapiclient.errors import UnexpectedMethodError
-from googleapiclient.model import JsonModel
+from apiclient import mimeparse
+from apiclient.errors import BatchError
+from apiclient.errors import HttpError
+from apiclient.errors import InvalidChunkSizeError
+from apiclient.errors import ResumableUploadError
+from apiclient.errors import UnexpectedBodyError
+from apiclient.errors import UnexpectedMethodError
+from apiclient.model import JsonModel
 from oauth2client import util
 
 
